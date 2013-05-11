@@ -1,0 +1,90 @@
+<html>
+<head>
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <!--
+     <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+  -->
+  <link rel="stylesheet" type="text/css" href="css/rung.css"/>
+  <script type="text/javascript" src="js/jquery-1.9.1.min.js"/></script>
+  <script type="text/javascript" src="js/jquery.qrcode.min.js"/></script>
+
+  <title>Rung Action Creator</title>
+</head>
+<body>
+
+<div class="container">
+<div class="mainContents">
+<div class="step action">
+  <div class="count"></div>
+  <div class="actionName">What do you want your Rung to do?</div>
+  <div class="actionContents">
+    <div class="rungActions">
+	</div>
+  </div>
+  <div class="overlay"></div>
+</div>
+
+<div class="step option">
+  <div class="count"></div>
+  <div class="actionName"></div>
+  <div class="actionContents">
+    <form>
+    <label for="optionInput"></label><input id="optionInput" type="text">
+  <input type="submit" class="btn btn-success next" value="Next">
+  <button type="button" class="btn back">Back</button>
+  </div>
+  <div class="overlay"></div>
+</div>
+
+<div class="step platform">
+  <div class="count"></div>
+  <div class="actionName">Install App</div>
+  <div class="actionContents">
+    Select your Mobile Phone Platform
+    <div class="platforms">
+	   <a class="paddedIcon" data-platform="android"><img src="img/android.png">Android</a>
+	   <a class="paddedIcon" data-platform="windowsMobile"><img src="img/windowsmobile.png">Windows Mobile</a>
+	   <a class="paddedIcon" data-platform="blackBerry"><img src="img/blackberry.png">Blackberry</a>
+	</div>
+  </div>
+  <button type="button" class="btn back">Back</button>
+  <div class="overlay"></div>
+</div>
+
+<div class="step platformInstall">
+  <div class="count"></div>
+  <div class="actionName">Install App</div>
+  <div class="actionContents">
+    <div class="platformInfo" id="androidInfo">
+	   <button type="button" class="btn obviousButton" href="" target="_blank">Install Now (will open a new window)</button>
+	</div>
+    <div class="platformInfo" id="windowsMobileInfo">
+	   Search for Rung in the Windows Mobile Store.
+	</div>
+    <div class="platformInfo" id="blackBerryInfo">
+	   Search for Rung in the BlackBerry app center.
+	</div>
+  <button type="button" id="continue" class="btn btn-success">I have installed the app, continue</button>
+  </div>
+  <button type="button" class="btn back">Back</button>
+  <div class="overlay"></div>
+</div>
+
+<div class="step showQr">
+  <div class="count"></div>
+  <div class="actionName">Open the Rung App</div>
+  <div class="actionContents">Select "scan a QR code" then scan this QR code:
+    <div id="qrCode"></div>
+  </div>
+  <button type="button" class="btn btn-success finish">Finish & Reset!</button>
+  <button type="button" class="btn back">Back</button>
+  <div class="overlay"></div>
+</div>
+</div>
+<footer><a href="http://rung.io">Rung</a> NDEF Generator (c) McLear 2013</footer>
+</div>
+<script type="text/javascript" src="js/rung.js"/></script>
+
+</body>

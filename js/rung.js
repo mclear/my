@@ -3,7 +3,6 @@
 /* 
  == Still to do
  Make "Back" button work
- Provide option for "dont prompt me again to install app"
  Publish packages to "stores"
 */
 

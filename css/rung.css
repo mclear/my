@@ -272,12 +272,22 @@ button.close {
   .actionName{
     font-size:36px;
   }
+  .actionContents{
+    font-size:20px;
+  }
   button{
     width:100%;
 	min-height:40px;
 	margin-top:20px;
+	font-size:20px;
+  }
+  .btn{
+    font-size:20px;
   }
   input{
     width:100% !important;
+  }
+  .step{
+    margin-top:20px;
   }
 }

@@ -58,7 +58,11 @@ $(document).ready(function(){
   $('.option > .actionContents > form').submit(function(){
     debug("Option form submitted");
     showCompleted("option");
-    showInstallApp();	
+    if(readCookie("appInstalled")){ // do we have a cookie to bypass the app step?
+      showQR(); // if so then go onto showing the QR code
+    }else{
+      showInstallApp();	
+    }
     return false;
   });
   $("body").on('click', ".platforms > .paddedIcon", function(){
@@ -70,7 +74,8 @@ $(document).ready(function(){
     step = 3; // Platform is selected
   });
   $("body").on('click', "#continue", function(){
-    debug("App is installed, need to show the generated QR Code");
+    debug("App is installed, need to show the generated QR Code and create a Cookie");
+    createCookie("appInstalled", true, 720); // store for 720 days
     step = 4; // app is installed, just need to show QR code now
     showCompleted("platformInstall");
     showQR();
@@ -78,12 +83,14 @@ $(document).ready(function(){
   $("body").on('click', ".finish", function(){
     document.location.reload(true);
   })
+/*
   $("body").on('click', ".back", function(){
     debug("going back from step: "+step);
-    step = step -1 ;
+    step = step -1 ;// this is gonna be weird for non standard routes
     debug("to step: "+step);
-    // hide parent div
+    $(this).parent().hide(); // hide parent div
   });
+*/
 });
 
 function addActions(){
@@ -99,7 +106,7 @@ function selectAction(action){
   debug("Action "+action +" selected");
   showCompleted("action");
   step = 1;
-  console.log(actions[action]);
+  debug(actions[action]);
   if(actions[action].requiresString !== false){ // If the item requires further input
      showOption(action);
   }else{
@@ -122,10 +129,6 @@ function showOption(action){
 }
 
 function showInstalledApp(){
-  if(ga){ // if ga has executed
-    ga('send', 'generateQR', action, option); // send event to GA
-  }
-  generateQR();
   debug("showing installed app");
   $('.platformInstall').show();
   $('html, body').animate({
@@ -161,6 +164,12 @@ function generateQR(){ // Create a QR from an API and write it to dom
 
 
 function showQR(){
+  if(ga){ // if ga has executed
+    ga('send', 'generateQR', action, option); // send event to GA
+  }
+  generateQR();
+  debug("generated QR for :"+action+" with the option of "+option);
+
   step = 5;
   $('.showQr').show();  
   debug("scrolling to showQr");
@@ -175,3 +184,26 @@ function debug(msg){
   }
 }
 
+function createCookie(name, value, days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = "; expires=" + date.toGMTString();
+    } else var expires = "";
+    document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = escape(name) + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return unescape(c.substring(nameEQ.length, c.length));
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name, "", -1);
+}

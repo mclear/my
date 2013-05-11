@@ -74,8 +74,7 @@ body{
   margin:50px;
 }
 .back{
-  display:none;
-  background-color:grey;
+  display:none !important;
   position:absolute;
   right:0;
   top:0;

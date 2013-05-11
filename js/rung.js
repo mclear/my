@@ -1,10 +1,25 @@
-/* Looking at the source?  We're going to be hiring so why not get in touch? */
+/* Looking at the source?  We're going to be hiring so why not bugfix or add new features then get in touch? 
+
+  Github Repo: http://github.com/mclear/my
+  
+*/
 
 /* 
  == Still to do
- Make "Back" button work
- Connect to various platforms to get details IE facebook connect to get profile URL
- Publish packages to "stores"
+ * v1 - Integrate plugins
+  - https://github.com/wildabeast/BarcodeScanner/
+  - https://github.com/chariotsolutions/phonegap-nfc/blob/master/INSTALL.md
+ 
+ * v1 - Show Keyboard when you get to the input page
+  - https://github.com/phonegap/phonegap/wiki/How-to-show-and-hide-soft-keyboard-in-Android
+  
+ * v1.1 - Support "Back" (prevents default action) -- Try to use History API
+  - https://github.com/phonegap/phonegap/wiki/Back-Button-Usage
+  
+ * v2 - Connect to various platforms to get details IE facebook connect to get profile URL
+ 
+ * v1 - Publish packages to "stores"
+  
 */
 
 var step = 0; // token nasty globals

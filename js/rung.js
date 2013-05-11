@@ -67,7 +67,7 @@ $(document).ready(function(){
     window.scrollTo(0, 1) }, 
   100);
   var app = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
-  // app = true; // TODO remove me
+  app = true; // TODO remove me
   if(app){
     showLandingPage();
   }else{
@@ -111,6 +111,9 @@ $(document).ready(function(){
 
   $("body").on('click', ".finish", function(){
     document.location.reload(true);
+  });
+  $("body").on('click', "#scan", function(){
+    scan();
   })
 /*
   $("body").on('click', ".back", function(){
@@ -246,4 +249,28 @@ function readCookie(name) {
 
 function eraseCookie(name) {
     createCookie(name, "", -1);
+}
+
+function scan(){
+  try {
+    window.plugins.barcodeScanner.scan(function(args) {
+      debug("Scanner result: \n" +
+                    "text: " + args.text + "\n" +
+                    "format: " + args.format + "\n" +
+                    "cancelled: " + args.cancelled + "\n");
+      /*
+      if (args.format == "QR_CODE") {
+      window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
+      }
+      */
+      // document.getElementById("info").innerHTML = args.text;
+      writeTag(args.text);
+    });
+  } catch (ex) {
+    debug(ex.message);
+  }
+}
+
+function writeTag(tag){
+  console.log(tag);
 }

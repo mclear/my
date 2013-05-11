@@ -49,8 +49,8 @@ $(document).ready(function(){
   setTimeout(function() {  // ghetto but required to scroll browser back to top on new load
     window.scrollTo(0, 1) }, 
   100);
-  var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1; // Is it an App or not?
-  app = true;
+  var app = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
+  // app = true; // TODO remove me
   if(app){
     showLandingPage();
   }else{
@@ -69,6 +69,7 @@ $(document).ready(function(){
     debug("Option form submitted");
     showCompleted("option");
     if(readCookie("appInstalled")){ // do we have a cookie to bypass the app step?
+	  showCompleted("platform");
       showQR(); // if so then go onto showing the QR code
     }else{
       showInstallApp();	
@@ -185,6 +186,7 @@ function generateQR(){ // Create a QR from an API and write it to dom
 
 
 function showQR(){
+  showCompleted("platform");
   if(ga){ // if ga has executed
     ga('send', 'generateQR', action, option); // send event to GA
   }

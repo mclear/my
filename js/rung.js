@@ -3,6 +3,7 @@
 /* 
  == Still to do
  Make "Back" button work
+ Connect to various platforms to get details IE facebook connect to get profile URL
  Publish packages to "stores"
 */
 

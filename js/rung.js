@@ -78,6 +78,12 @@ $(document).ready(function(){
   $("body").on('click', ".finish", function(){
     document.location.reload(true);
   })
+  $("body").on('click', ".back", function(){
+    debug("going back from step: "+step);
+    step = step -1 ;
+    debug("to step: "+step);
+    // hide parent div
+  });
 });
 
 function addActions(){

@@ -276,4 +276,7 @@ button.close {
 	min-height:40px;
 	margin-top:20px;
   }
+  input{
+    width:100% !important;
+  }
 }

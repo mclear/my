@@ -117,6 +117,7 @@ function addActions(){
     if(!action.image){ action.image = key.toLowerCase() + ".png"; };
     $(".action > .actionContents > .rungActions").append("<a data-action="+key+" class=\"rungAction paddedIcon\"><img src=\"img/"+action.image+"\">"+action.label+"</a>");
   });
+  $('.action').show();
   $('html, body').animate({
     scrollTop: $('.action').offset().top
   }, 500);

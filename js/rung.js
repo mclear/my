@@ -269,6 +269,7 @@ function scan(){
   } catch (ex) {
     debug(ex.message);
 	debug("Faking it for now...");
+	alert(ex);
 	writeTag('{"action":"etherpad","option":""}');
   }
 }

@@ -1,12 +1,13 @@
 /* Looking at the source?  We're going to be hiring so why not get in touch? */
 
-// Still to do
-// Icons for each action
-// Action spec for other actions
-// Find a way to monitor popularity
-// Make "Back" button work
-// Find out how blackberry/wm works
-// Link to actual Rung app in stores
+/* 
+ == Still to do
+ Action spec for other actions
+ Find a way to monitor popularity
+ Make "Back" button work
+ Find out how blackberry/wm works
+ Link to actual Rung app in stores
+*/
 
 var step = 0; // token nasty globals
 var action = ""; // one for the money

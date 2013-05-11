@@ -154,8 +154,8 @@ function showCompleted(step){
 
 function generateQR(){ // Create a QR from an API and write it to dom
   var qrInfo = {
-     "action": action,
-     "option": option
+     action: action,
+     option: option
   }
   debug("Making qrCode Image for "+JSON.stringify(qrInfo));
   $('#qrCode').qrcode(JSON.stringify(qrInfo));

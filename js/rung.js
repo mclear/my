@@ -7,11 +7,13 @@
  Make "Back" button work
  Find out how blackberry/wm works
  Link to actual Rung app in stores
+ Provide option for "dont prompt me again to install app"
 */
 
 var step = 0; // token nasty globals
 var action = ""; // one for the money
 var option = ""; // two for the show..
+var platform = ""; // three for the heavy now go go go 
 
 var actions = {
   twitter: {
@@ -53,18 +55,18 @@ $(document).ready(function(){
     return false;
   });
   $("body").on('click', ".platforms > .paddedIcon", function(){
-    var platform = $(this).data("platform");
-	debug("Platform is "+platform);
-	showCompleted("platform");
-	$("#"+platform+"Info").show();
-	showInstalledApp();
-	step = 3; // Platform is selected
+    platform = $(this).data("platform");
+    debug("Platform is "+platform);
+    showCompleted("platform");
+    $("#"+platform+"Info").show();
+    showInstalledApp();
+    step = 3; // Platform is selected
   });
   $("body").on('click', "#continue", function(){
     debug("App is installed, need to show the generated QR Code");
     step = 4; // app is installed, just need to show QR code now
     showCompleted("platformInstall");
-	showQR();
+    showQR();
   });
   $("body").on('click', ".finish", function(){
     document.location.reload(true);
@@ -75,7 +77,7 @@ function addActions(){
   // go through each item in actions and render to UI
   $.each(actions, function(key, action) {
     debug(action);
-	if(!action.image){ action.image = key.toLowerCase() + ".png"; };
+    if(!action.image){ action.image = key.toLowerCase() + ".png"; };
     $(".action > .actionContents > .rungActions").append("<a data-action="+key+" class=\"rungAction paddedIcon\"><img src=\"img/"+action.image+"\">"+action.label+"</a>");
   });
 }
@@ -84,8 +86,11 @@ function selectAction(action){
   debug("Action "+action +" selected");
   showCompleted("action");
   step = 1;
-  if(!actions[action].requiresString){ // If the item requires further input
+  console.log(actions[action]);
+  if(actions[action].requiresString !== false){ // If the item requires further input
      showOption(action);
+  }else{
+     showInstallApp(); // Action does not require further user input
   }
 }
 
@@ -98,17 +103,18 @@ function showOption(action){
   $('.option > .actionContents > form > input').attr("placeholder", actions[action].placeHolder);
   $('.option > .actionContents > form > label').text(actions[action].optionText);
   $('html, body').animate({
-	scrollTop: $('.option').offset().top
+    scrollTop: $('.option').offset().top
   }, 500);
   $('#optionInput').focus();
 }
 
 function showInstalledApp(){
+  _gaq.push(['_trackEvent', 'generateQR', action, option]);
   generateQR();
   debug("showing installed app");
   $('.platformInstall').show();
   $('html, body').animate({
-	scrollTop: $('.platformInstall').offset().top
+    scrollTop: $('.platformInstall').offset().top
   }, 500);
 }
 
@@ -120,7 +126,7 @@ function showInstallApp(){
   debug("option from the form is "+option);
   $('.platform').show();
   $('html, body').animate({
-	scrollTop: $('.platform').offset().top
+    scrollTop: $('.platform').offset().top
   }, 500);
 }
 
@@ -132,11 +138,10 @@ function showCompleted(step){
 function generateQR(){ // Create a QR from an API and write it to dom
   var qrInfo = {
      "action": action,
-	 "option": option
+     "option": option
   }
   debug("Making qrCode Image for "+JSON.stringify(qrInfo));
   $('#qrCode').qrcode(JSON.stringify(qrInfo));
-
 }
 
 
@@ -145,7 +150,7 @@ function showQR(){
   $('.showQr').show();  
   debug("scrolling to showQr");
   $('html, body').animate({
-	scrollTop: $('.showQr').offset().top
+    scrollTop: $('.showQr').offset().top
   }, 500);
 }
 

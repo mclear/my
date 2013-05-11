@@ -42,6 +42,7 @@ body{
 #optionInput{
   display:block;
   max-width:800px;
+  width:100%;
   margin:20px auto;
   line-height:48px;
   font-size:32px;

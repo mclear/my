@@ -252,3 +252,22 @@ button.close {
 .btn-success.active {
   background-color: #408140 \9;
 }
+
+@media screen and (max-width: 600px) {
+  body{
+    background-color:orange;
+  }
+  #optionInput{
+    width:100%;
+    font-size:20px;
+  }
+  a.paddedIcon{
+    padding:5px;
+  }
+  .container{
+    padding:20px;
+  }
+  .actionName{
+    font-size:36px;
+  }
+}

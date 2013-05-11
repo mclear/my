@@ -18,23 +18,33 @@ var platform = ""; // three for the heavy now go go go
 var actions = {
   twitter: {
     label: "Twitter",
-	optionText: "What is your Twitter Username?",
-	placeHolder: "Your Twitter Username... IE JohnMcLear"
+    optionText: "What is your Twitter Username?",
+    placeHolder: "@johnmclear"
   },
   facebook: {
     label: "Facebook",
-	optionText: "What is your Facebook Page URL?",
-	placeHolder: "http://facebook.com/whatever"
+    optionText: "What is your Facebook Page URL?",
+    placeHolder: "http://facebook.com/rung.cake24"
   },
   clone: {
     label: "Clone Rung",
     isClone: true,
-	requiresString: false
+    requiresString: false
   },
   website: {
     label: "Website",
-	optionText: "What is the URL of the website?",
-	placeHolder: "http://mclear.co.uk"
+    optionText: "What is the URL of the website?",
+    placeHolder: "http://mclear.co.uk"
+  },
+  skype: {
+    label: "Skype",
+    optionText: "What is your Skype Username?",
+    placeHolder: "JohnMcLear"
+  },
+  etherpad: {
+    label: "Etherpad",
+    optionText: "What is your Pad URL?",
+    placeHolder: "http://beta.etherpad.org/p/foowie"
   }
 };
 

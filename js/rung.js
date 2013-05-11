@@ -109,7 +109,9 @@ function showOption(action){
 }
 
 function showInstalledApp(){
-  _gaq.push(['_trackEvent', 'generateQR', action, option]);
+  if(ga){ // if ga has executed
+    ga('send', 'generateQR', action, option); // send event to GA
+  }
   generateQR();
   debug("showing installed app");
   $('.platformInstall').show();

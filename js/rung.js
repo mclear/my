@@ -49,8 +49,18 @@ $(document).ready(function(){
   setTimeout(function() {  // ghetto but required to scroll browser back to top on new load
     window.scrollTo(0, 1) }, 
   100);
-  
-  addActions();
+  var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1; // Is it an App or not?
+  app = true;
+  if(app){
+    showLandingPage();
+  }else{
+    addActions();
+  }
+  $("body").on('click', "#createNew", function(){
+    step = 0;
+    showCompleted("landing");
+	addActions();
+  });
   $("body").on('click', ".action > .actionContents > .rungActions > .rungAction", function(){
     action = $(this).data("action");
     selectAction(action);
@@ -80,6 +90,7 @@ $(document).ready(function(){
     showCompleted("platformInstall");
     showQR();
   });
+
   $("body").on('click', ".finish", function(){
     document.location.reload(true);
   })
@@ -91,7 +102,13 @@ $(document).ready(function(){
     $(this).parent().hide(); // hide parent div
   });
 */
+  
 });
+
+function showLandingPage(){
+  debug("Showing holding pge for app ");
+  $('.landing').show();
+}
 
 function addActions(){
   // go through each item in actions and render to UI
@@ -100,6 +117,9 @@ function addActions(){
     if(!action.image){ action.image = key.toLowerCase() + ".png"; };
     $(".action > .actionContents > .rungActions").append("<a data-action="+key+" class=\"rungAction paddedIcon\"><img src=\"img/"+action.image+"\">"+action.label+"</a>");
   });
+  $('html, body').animate({
+    scrollTop: $('.action').offset().top
+  }, 500);
 }
 
 function selectAction(action){

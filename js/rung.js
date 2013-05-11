@@ -12,6 +12,8 @@
  
  * v1 - Show Keyboard when you get to the input page
   - https://github.com/phonegap/phonegap/wiki/How-to-show-and-hide-soft-keyboard-in-Android
+ 
+ * v1 - App Logos (in res folder)
   
  * v1.1 - Support "Back" (prevents default action) -- Try to use History API
   - https://github.com/phonegap/phonegap/wiki/Back-Button-Usage

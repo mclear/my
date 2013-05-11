@@ -7,8 +7,8 @@
 /* 
  == Still to do
  * v1 - Integrate plugins
-  - https://github.com/wildabeast/BarcodeScanner/
-  - https://github.com/chariotsolutions/phonegap-nfc/blob/master/INSTALL.md
+  - https://github.com/wildabeast/BarcodeScanner/ <-- done
+  - https://github.com/chariotsolutions/phonegap-nfc/blob/master/INSTALL.md <-- https://github.com/chariotsolutions/phonegap-nfc/issues/82
  
  * v1 - Show Keyboard when you get to the input page
   - https://github.com/phonegap/phonegap/wiki/How-to-show-and-hide-soft-keyboard-in-Android

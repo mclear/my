@@ -2,12 +2,9 @@
 
 /* 
  == Still to do
- Action spec for other actions
- Find a way to monitor popularity
  Make "Back" button work
- Find out how blackberry/wm works
- Link to actual Rung app in stores
  Provide option for "dont prompt me again to install app"
+ Publish packages to "stores"
 */
 
 var step = 0; // token nasty globals

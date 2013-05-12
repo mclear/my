@@ -150,7 +150,8 @@ function showOption(action){
   debug("Action "+action+" requires further information so showing options form");
   $('.option').show();
   $('.option > .overlay').hide();
-  $('.option > .actionName').text(action);
+  var actionName = actions[action].label;
+  $('.option > .actionName').text(actionName);
   $('.option > .actionContents > form > input').attr("placeholder", actions[action].placeHolder);
   $('.option > .actionContents > form > label').text(actions[action].optionText);
   $('html, body').animate({
@@ -260,10 +261,54 @@ function scan(){
     debug(ex.text);
 	debug("Faking it for now...");
 	alert(ex.text);
-	writeTag('{"action":"etherpad","option":""}');
+	writeTag(ex.text);
   }
 }
 
+function cloneTag(){
+  nfc.addNdefListener (
+    function (nfcEvent) {
+      var tag = nfcEvent.tag
+      var ndefMessage = tag.ndefMessage;
+      // note: read code will need to decode
+      // the payload from each record
+      alert(JSON.stringify(ndefMessage));
+      writeTag(ndefMessage);
+    }, 
+    function () { // success callback
+      alert("Waiting for rung");
+    },
+    function (error) { // error callback
+      alert("Error adding NDEF listener " + JSON.stringify(error));
+    }
+  );
+}
+
 function writeTag(tag){
-  console.log(tag);
+  debug("Listening for a rung tag to which I will write"+tag);
+  nfc.addNdefListener (
+    function (nfcEvent) {
+    var ndefRecord = ndef.uriRecord(tag.text)
+    var ndefMessage = [];
+    ndefMessage.push();
+
+    nfc.write(ndefMessage, writeSuccess(tag), writeFailure(tag)); // The actual write of the tag
+	
+	}, 
+    function () { // success callback
+      alert("Waiting for rung");
+    },
+    function (error) { // error callback
+      alert("Error adding NDEF listener " + JSON.stringify(error));
+    }
+  );
+}
+
+function writeSuccess(tag){
+  alert("Rung successfully written, test action by holding your rung to your device");
+}
+
+function writeFailure(tag){
+  alert("Failed to write, trying again");
+  writeTag(tag);
 }

@@ -39,6 +39,11 @@ var actions = {
     label: "Etherpad",
     optionText: "What is your Pad URL?",
     placeHolder: "http://beta.etherpad.org/p/foowie"
+  },
+  youtube:{
+    label: "Youtube",
+	optionText: "What is your Youtube Video / Channel URL?",
+	placeHolder: "http://youtube.com/johnyma22"
   }
 };
 

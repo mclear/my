@@ -110,9 +110,10 @@ a:hover{
   height:100%;
   background-color:#fff;
   z-index:2;
-  opacity:.9;
+  opacity:.98;
   position:absolute;
   top:0;
+  text-align:center;
   display:none;
 }
 

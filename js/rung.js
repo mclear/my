@@ -3,7 +3,8 @@
   Github Repo: http://github.com/mclear/my
 */
 
-var app = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
+// var app = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
+var app = true; // TODO remove me
 var step = 0; // token nasty globals
 var action = ""; // one for the money
 var option = ""; // two for the show..
@@ -101,7 +102,10 @@ $(document).ready(function(){
     document.location.reload(true);
   });
   $("body").on('click', "#scan", function(){
-    scan();
+    // Show overlay with loading..
+	showCompleted("landing");
+	$('.landing > .overlay').html("Starting QR Code Scanner<br/><img src='img/loading.gif'>");
+    scan(); // This can take some time to execute...
   })
 /*
   $("body").on('click', ".back", function(){
@@ -255,12 +259,11 @@ function scan(){
       }
       */
       // document.getElementById("info").innerHTML = args.text;
-	  alert("YAY!");
+	  alert("Scanned QRCode, Hold your Rung to the NFC antenna on your device now then Press Ok..  Note: It's usually on the back");
       writeTag(args.text);
     });
   } catch (ex) {
     debug(ex.text);
-	debug("Faking it for now...");
 	alert(ex.text);
 	writeTag(ex.text);
   }
@@ -277,7 +280,7 @@ function cloneTag(){
       writeTag(ndefMessage);
     }, 
     function () { // success callback
-      alert("Waiting for rung");
+      alert("Wrote Action to Rung!  Congrats!");
     },
     function (error) { // error callback
       alert("Error adding NDEF listener " + JSON.stringify(error));

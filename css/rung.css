@@ -277,7 +277,7 @@ button.close {
   }
   button{
     width:100%;
-	min-height:40px;
+	min-height:150px;
 	margin-top:20px;
 	font-size:20px;
   }

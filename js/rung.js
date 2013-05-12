@@ -67,7 +67,6 @@ $(document).ready(function(){
     window.scrollTo(0, 1) }, 
   100);
   var app = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
-  app = true; // TODO remove me
   if(app){
     showLandingPage();
   }else{
@@ -264,6 +263,7 @@ function scan(){
       }
       */
       // document.getElementById("info").innerHTML = args.text;
+	  alert("YAY!");
       writeTag(args.text);
     });
   } catch (ex) {

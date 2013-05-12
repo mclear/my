@@ -3,8 +3,8 @@
   Github Repo: http://github.com/mclear/my
 */
 
-// var app = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
-var app = true; // TODO remove me
+var app = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
+// var app = true; // TODO remove me
 var step = 0; // token nasty globals
 var action = ""; // one for the money
 var option = ""; // two for the show..

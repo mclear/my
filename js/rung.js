@@ -71,12 +71,14 @@ $(document).ready(function(){
         option: option
       }));
 	}
-    if(readCookie("appInstalled")){ // do we have a cookie to bypass the app step?
-	  showCompleted("platform");
-      showQR(); // if so then go onto showing the QR code
-    }else{
-      showInstallApp();	
-    }
+	if(!app){ // its the mobile site
+      if(readCookie("appInstalled")){ // do we have a cookie to bypass the app step?
+  	    showCompleted("platform");
+        showQR(); // if so then go onto showing the QR code
+      }else{
+        showInstallApp();	
+      }
+	}
     return false;
   });
   $("body").on('click', ".platforms > .paddedIcon", function(){

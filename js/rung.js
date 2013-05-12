@@ -65,16 +65,15 @@ $(document).ready(function(){
   $('.option > .actionContents > form').submit(function(){
     debug("Option form submitted");
     showCompleted("option");
+	if(app){ // if its the app already just write the damn tag..
+	  writeTag(JSON.stringify({ // todo, ensure cloning works
+        action: action,
+        option: option
+      }));
+	}
     if(readCookie("appInstalled")){ // do we have a cookie to bypass the app step?
 	  showCompleted("platform");
-	  if(app){
-	    writeTag(JSON.stringify({
-          action: action,
-          option: option
-        }));
-	  }else{
-        showQR(); // if so then go onto showing the QR code
-	  }
+      showQR(); // if so then go onto showing the QR code
     }else{
       showInstallApp();	
     }

@@ -7,13 +7,12 @@
 /* 
  == Still to do
  * v1 - Integrate plugins
-  - https://github.com/wildabeast/BarcodeScanner/ <-- done
   - https://github.com/chariotsolutions/phonegap-nfc/blob/master/INSTALL.md <-- https://github.com/chariotsolutions/phonegap-nfc/issues/82
  
  * v1 - Show Keyboard when you get to the input page
   - https://github.com/phonegap/phonegap/wiki/How-to-show-and-hide-soft-keyboard-in-Android
  
- * v1 - App Logos (in res folder)
+ * v1 - Better quality App Logos (in res folder)
   
  * v1.1 - Support "Back" (prevents default action) -- Try to use History API
   - https://github.com/phonegap/phonegap/wiki/Back-Button-Usage
@@ -21,13 +20,18 @@
  * v2 - Connect to various platforms to get details IE facebook connect to get profile URL
  
  * v1 - Publish packages to "stores"
+ 
+ * v2 - Remove nasty globals
+ 
+ * v2 - Be able to scan in both landscape and portrait - see https://github.com/phonegap/phonegap-plugins/issues/238
   
 */
 
-var step = 0; // token nasty globals
-var action = ""; // one for the money
-var option = ""; // two for the show..
-var platform = ""; // three for the heavy now go go go 
+  var app = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
+  var step = 0; // token nasty globals
+  var action = ""; // one for the money
+  var option = ""; // two for the show..
+  var platform = ""; // three for the heavy now go go go 
 
 var actions = {
   twitter: {
@@ -63,10 +67,6 @@ var actions = {
 };
 
 $(document).ready(function(){
-  setTimeout(function() {  // ghetto but required to scroll browser back to top on new load
-    window.scrollTo(0, 1) }, 
-  100);
-  var app = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
   if(app){
     showLandingPage();
   }else{
@@ -86,7 +86,14 @@ $(document).ready(function(){
     showCompleted("option");
     if(readCookie("appInstalled")){ // do we have a cookie to bypass the app step?
 	  showCompleted("platform");
-      showQR(); // if so then go onto showing the QR code
+	  if(app){
+	    writeTag(JSON.stringify({
+          action: action,
+          option: option
+        }));
+	  }else{
+        showQR(); // if so then go onto showing the QR code
+	  }
     }else{
       showInstallApp();	
     }
@@ -122,7 +129,9 @@ $(document).ready(function(){
     $(this).parent().hide(); // hide parent div
   });
 */
-  
+  setTimeout(function() {  // ghetto but required to scroll browser back to top on new load
+    window.scrollTo(0, 1) }, 
+  100);
 });
 
 function showLandingPage(){

@@ -283,9 +283,11 @@ button.close {
   }
   .btn{
     font-size:20px;
+	min-height:80px;
   }
   input{
     width:100% !important;
+	min-height:80px;
   }
   .step{
     margin-top:20px;

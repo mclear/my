@@ -16,7 +16,6 @@ body{
 .step{
   display:none;
   position:relative;
-  min-height:1000px;
   width:100%;
   padding:0 0 50px 0;
   margin-bottom:50px;

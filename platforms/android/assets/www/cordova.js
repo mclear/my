@@ -6761,6 +6761,7 @@ require('cordova/channel').onNativeReady.fire();
     // * There are plugins defined and all plugins are finished loading.
     // * There are no plugins to load.
     function finishPluginLoading() {
+        console.log('finishpluginloading');
         context.cordova.require('cordova/channel').onPluginsReady.fire();
     }
 
@@ -6823,6 +6824,7 @@ require('cordova/channel').onNativeReady.fire();
         xhr.onerror = function() {
             finishPluginLoading();
         };
+        console.log('loading up plugins.json');
         xhr.open('GET', 'cordova_plugins.json', true); // Async
         xhr.send();
     }

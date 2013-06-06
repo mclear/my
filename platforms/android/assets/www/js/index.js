@@ -76,12 +76,14 @@ var app = {
     // so we need to call app.report(), and not this.report()
     console.log('deviceready');
 
-    nfc.addTagDiscoveredListener(function () {
-      writeTag(); // TODO uncomment me
+    nfc.addNdefListener(function (nfcEvent) {
+      ring(nfcEvent); // TODO uncomment me
       console.log("Attempting to bind to NFC");
     }, function () {
-      console.log("Success.  Listening for tags..");
+      console.log("Success.  Listening for rings..");
     }, function () {
+      alert("NFC Functionality is not working, is NFC enabled on your device?");
+      $('button').attr('disabled','disabled');
       console.log("Fail.");
     });
     addActions();
@@ -131,10 +133,11 @@ function showOption(action) {
 
 function showCompleted(step) {
   debug("showing " + step + " as completed");
+  $('#'+step).hide();
 }
 
 function prepareTag(action, option) {
-  debug("Preparing Tag..");
+  debug("Preparing Rings..");
   debug(action);
   debug(option);
   var newUrl = actions[action].format(option);
@@ -166,7 +169,7 @@ $('#option > .actionContents > form').submit(function () {
   debug("is it a mobile app?");
   debug(isApp);
   if (isApp) { // if its the app already just write the damn tag..
-    debug("Writing the tag with action / options:");
+    debug("Writing the ring with action / options:");
     debug(action);
     debug(option);
     prepareTag(action, option);
@@ -183,23 +186,52 @@ $("body").on('click', "#scan", function () {
   showCompleted("landing");
   scan(); // This can take some time to execute...
 })
+$("body").on('click', "#read", function () {
+  showCompleted("landing");
+  $('#writeRing').show();
+  read();
+})
+$("body").on('click', "#exit", function () {
+  // close window / running application
+  console.log("Exiting app");
+  navigator.app.exitApp(); 
+})
 
 // We have the tag in a global object
-
-function writeTag() {
-  if (action != "") {
+function ring(nfcEvent) {
+  console.log("Ring found, yay!")
+  if (action != "") { // do we have an action to write or not?
+	// write
     // from https://github.com/don/phonegap-nfc-writer/blob/master/assets/www/main.js
     nfc.write(
       [ndefRecord], function () {
         navigator.notification.vibrate(100);
         console.log("Written", ndefRecord);
-        alert("Well done!  Your ring is ready.");
+        alert("Woohoo!  Your ring is ready.");
       }, function (reason) {
         console.log("Inlay wriet failed")
       });
+  }else{
+    // read
+	showCompleted("landing");
+	$('#writeRing').show();	 
+	console.log("Reading")
+	console.log(nfcEvent);
+	var ring = nfcEvent.tag;
+	console.log(ring);
+	// console.log("Read", JSON.stringify(ring));
+	ringData = nfc.bytesToString(ring.ndefMessage[0].payload); // TODO make this less fragile 
+	$('#writeRing > .actionName').hide();
+	$('#writeRing > .actionContents').html("<h1>Ring Contents</h1>"+ringData);
   }
 }
 
 function scan() {
-    window.barcodescanner.scan(function(resp) { alert('yay we got something: ' + resp); }, function() { alert('uh oh error'); });
+  window.barcodescanner.scan(function(resp) {
+	// qr code discovered, need to decode, set action and option
+	console.log(resp);
+    alert('yay we got something: ' + resp); 
+  }, function() { 
+	alert('uh oh error'); 
+  });
 }

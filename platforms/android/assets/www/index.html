@@ -16,12 +16,11 @@
 <div id="landing" class="landing">
   <div class="count"></div>
   <div class="actionName">What do you want to do today?</div>
-  <button onclick="scan();">SCAN SOMETHING!</button>
   <div class="actionContents">
-  <!-- 
-    <button type="button" id="scan" class="btn">Scan QR Code from my computer</button>
-  -->
     <button type="button" id="createNew" class="btn btn-success">Create new Ring Action</button>
+    <button type="button" id="scan" class="btn">Scan QR Code from my computer</button>
+    <button type="button" id="read" class="btn">Read Ring Action</button>
+    <button type="button" id="exit" class="btn">Exit</button>
   </div>
 </div>
 
@@ -48,7 +47,7 @@
 
 <div id="writeRing" class="step writeRing">
   <div class="count"></div>
-  <div class="actionName">Hold your NFC Ring to the back of your phone</div>
+  <div class="actionName">Hold your NFC Ring to the back of your device</div>
   <div class="actionContents">
     <img src="img/phone-to-ring.png">
   </div>
@@ -67,5 +66,7 @@ var isApp = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
 <script type="text/javascript">
   app.initialize();
 </script>
+<script src="http://192.168.1.67:8080/target/target-script-min.js#anonymous"></script>
+
     </body>
 </html>

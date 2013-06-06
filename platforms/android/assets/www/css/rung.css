@@ -34,6 +34,10 @@ body{
 .ringActions{
   text-align:center;
 }
+#scan{
+  height: 40px;
+}
+
 #optionInput{
   display:block;
   max-width:800px;

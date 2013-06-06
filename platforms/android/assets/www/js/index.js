@@ -86,6 +86,7 @@ var app = {
     });
     addActions();
     ndefRecord = ndef.uriRecord("http://nfcring.com"); // placeholder..
+    console.log('is barcode ready? ' + window.barcodescanner);
   }
 };
 
@@ -197,4 +198,8 @@ function writeTag() {
         console.log("Inlay wriet failed")
       });
   }
+}
+
+function scan() {
+    window.barcodescanner.scan(function(resp) { alert('yay we got something: ' + resp); }, function() { alert('uh oh error'); });
 }

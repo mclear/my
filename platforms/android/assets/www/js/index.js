@@ -83,8 +83,8 @@ var app = {
       console.log("Success.  Listening for rings..");
     }, function () {
       alert("NFC Functionality is not working, is NFC enabled on your device?");
-      $('button').attr('disabled','disabled');
-      console.log("Fail.");
+      $('button').attr('disabled','disabled'); // TODO UNCOMMENT ME
+      // console.log("Fail.");
     });
     addActions();
     ndefRecord = ndef.uriRecord("http://nfcring.com"); // placeholder..
@@ -229,9 +229,12 @@ function ring(nfcEvent) {
 function scan() {
   window.barcodescanner.scan(function(resp) {
 	// qr code discovered, need to decode, set action and option
-	console.log(resp);
-    alert('yay we got something: ' + resp); 
+	var bc = resp.text;
+	bc = JSON.parse(bc);
+	action = bc.action;
+	option = bc.option;
+    prepareTag(action, option);
   }, function() { 
-	alert('uh oh error'); 
+	alert('uh oh error - please let us know!'); 
   });
 }

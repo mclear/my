@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name = "format-detection" content = "telephone=no"/>
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
         <link rel="stylesheet" type="text/css" href="css/rung.css" />
-        <title>NFC Ring App</title>
+        <title>NFC Ring App - Write NFC Ring</title>
     </head>
 
 
@@ -14,21 +13,20 @@
 
 <div class="container">
 <div class="mainContents">
-<div id="landing" class="landing">
-  <div class="count"></div>
-  <div class="actionName">What do you want to do today?</div>
+
+<div id="writeRing" class="step writeRing">
+  <div class="actionName">Hold your NFC Ring to the back of your device</div>
   <div class="actionContents">
-    <button type="button" id="createNew" class="btn btn-success">Create new Ring Action</button>
-    <button type="button" id="scan" class="btn">Scan QR Code from my computer</button>
-    <button type="button" id="read" class="btn">Read Ring Action</button>
-    <button type="button" id="exit" class="btn">Exit</button>
+    <img src="img/phone-to-ring.png">
   </div>
+  <button id="finish" type="button" class="btn">Finish</button>
 </div>
+
 
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-
+<script type="text/javascript" src="js/phonegap-nfc.js"></script>
 <script type="text/javascript">
   app.initialize();
 </script>

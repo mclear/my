@@ -186,14 +186,14 @@ function ring(nfcEvent) {
   }
 }
 
-function scan() {
+function scanQR() {
   window.barcodescanner.scan(function(resp) {
 	// qr code discovered, need to decode, set action and option
 	var bc = resp.text;
 	bc = JSON.parse(bc);
 	action = bc.action;
 	option = bc.option;
-	if (actio && option){
+	if (action && option){
       window.location = "writeAction.html?action="+action+"&option="+option;
 	}else{
 	  window.location = "writeAction.html?action="+action;

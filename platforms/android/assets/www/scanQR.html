@@ -10,12 +10,29 @@
 
 
 <body>
-<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript">
+
+app = {
+		  initialize: function () {
+		    this.bind();
+		  },
+		  bind: function () {
+		    document.addEventListener('deviceready', this.deviceready, false);
+		  },
+		  deviceready: function () {
+		    // note that this is an event handler so the scope is that of the event
+		    // so we need to call app.report(), and not this.report()
+	 	    scanQR();
+		  }
+		};
+		
+
   app.initialize();
-  scan();
+  
 </script>
 
     </body>

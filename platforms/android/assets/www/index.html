@@ -24,45 +24,9 @@
   </div>
 </div>
 
-<div id="action" class="step action">
-  <div class="count"></div>
-  <div class="actionName">What do you want your Ring to do?</div>
-  <div class="actionContents">
-    <div class="ringActions">
-    </div>
-  </div>
-</div>
-
-<div id="option" class="step option">
-  <div class="count"></div>
-  <div class="actionName"></div>
-  <div class="actionContents">
-    <form>
-      <label for="optionInput"></label><input id="optionInput" type="text">
-      <input type="submit" class="btn btn-success next" value="Next">
-    </form>
-  </div>
-  <button type="button" class="btn back">Back</button>
-</div>
-
-<div id="writeRing" class="step writeRing">
-  <div class="count"></div>
-  <div class="actionName">Hold your NFC Ring to the back of your device</div>
-  <div class="actionContents">
-    <img src="img/phone-to-ring.png">
-  </div>
-  <button id="finish" type="button" class="btn">Finish</button>
-  <button type="button" class="btn back">Back</button>
-</div>
-
-<script type="text/javascript">
-var isApp = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
-</script>
-
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript" src="js/phonegap-nfc.js"></script>
 <script type="text/javascript">
   app.initialize();
 </script>

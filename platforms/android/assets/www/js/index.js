@@ -140,7 +140,7 @@ $("body").on('click', ".action > .actionContents > .ringActions > .ringAction", 
 });
 $("body").on('click', "#finish", function () {
   debug("Restarting");
-  document.location.reload(true);
+  window.location = "index.html";
 });
 $("body").on('click', "#exit", function () {
   // close window / running application
@@ -190,7 +190,10 @@ function scan() {
 	bc = JSON.parse(bc);
 	action = bc.action;
 	option = bc.option;
-    prepareTag(action, option);
+	if (actio && option){
+      window.location = "writeAction.html?action="+action+"&option="+option;
+	}else{
+	  window.location = "writeAction.html?action="+action;
   }, function() { 
 	alert('uh oh error - please let us know!'); 
   });

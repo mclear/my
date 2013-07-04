@@ -131,7 +131,7 @@ $("body").on('click', "#createNew", function () {
 $("body").on('click', "#scan", function () {
   window.location = "scanQR.html";
 });
-$("body").on('click', "#readAction", function () {
+$("body").on('click', "#read", function () {
   window.location = "readAction.html";
 });
 $("body").on('click', ".action > .actionContents > .ringActions > .ringAction", function () {

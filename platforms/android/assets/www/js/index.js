@@ -194,6 +194,7 @@ function scan() {
       window.location = "writeAction.html?action="+action+"&option="+option;
 	}else{
 	  window.location = "writeAction.html?action="+action;
+	}
   }, function() { 
 	alert('uh oh error - please let us know!'); 
   });

@@ -139,6 +139,7 @@ $("body").on('click', ".action > .actionContents > .ringActions > .ringAction", 
   window.location = "addParameterToAction.html?action="+action;
 });
 $("body").on('click', "#finish", function () {
+	console.log("um")
   debug("Restarting");
   window.location = "index.html";
 });

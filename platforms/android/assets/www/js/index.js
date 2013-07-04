@@ -153,6 +153,7 @@ function ring(nfcEvent) {
   console.log("Ring found, yay!")
   var action = gup("action");
   var option = gup("option");
+  console.log("um")
   option = unescape(option);
   if (action != "") { // do we have an action to write or not?
 	// write
@@ -171,15 +172,16 @@ function ring(nfcEvent) {
       });
   }else{
     // read
-	$('#writeRing').show();	 
+	// $('#writeRing').show();	 
 	console.log("Reading")
 	console.log(nfcEvent);
 	var ring = nfcEvent.tag;
 	console.log(ring);
 	// console.log("Read", JSON.stringify(ring));
 	ringData = nfc.bytesToString(ring.ndefMessage[0].payload); // TODO make this less fragile 
-	$('#writeRing > .actionName').hide();
-	$('#writeRing > .actionContents').html("<h1>Ring Contents</h1>"+ringData);
+	// $('#writeRing > .actionName').hide();
+	// $('#writeRing > .actionContents').html("<h1>Ring Contents</h1>"+ringData);
+	alert(ringData);
   }
 }
 

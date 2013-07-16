@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name = "format-detection" content = "telephone=no"/>
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
+        <link rel="stylesheet" type="text/css" href="css/rung.css" />
+        <title>NFC Ring App - Select URL or setting for action</title>
+    </head>
+
+
+<body>
+
+<div class="container">
+<div class="mainContents">
+
+<div id="option" class="step option">
+  <div class="actionName"></div>
+  <div class="actionContents">
+    <form action="writeAction.html" method="GET">
+      <label for="optionInput"></label><input name="option" id="optionInput" type="text">
+      <input type="hidden" id="action" name="action">
+      <input type="submit" class="btn btn-success next" value="Next">
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+  app.initialize();
+
+  var action = gup("action");
+  var actionName = actions[action].label;
+  $('.option > .actionName').hide();
+  $('.option > .actionContents > form > input').attr("placeholder", actions[action].placeHolder);
+  $('.option > .actionContents > form > label').text(actions[action].optionText);
+  $('#optionInput').focus();
+  $('#action').val(action);
+
+</script>
+
+    </body>
+</html>
